@@ -7,15 +7,16 @@
 
 ## コードの追加・修正
 
-1. branchを切る
-2. コードを書く
+1. mainブランチでpullする
+2. branchを切る
+3. コードを書く
     - [C# のコーディング規則](https://docs.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/coding-conventions#naming-conventions)になるべく従うこと
-3. commitする
-4. pushする
-5. Pull requestを作る
+4. commitする
+5. pushする
+6. Pull requestを作る
     - 関連するIssueがあればリンクを貼る
-6. レビューしてもらう
-7. mergeする
+7. レビューしてもらう
+8. mergeする
 
 ## ドキュメントの追加・修正
 
