@@ -1,9 +1,10 @@
 # Strikelike
  
-## 環境
+## 開発環境
 
-Unity Editor: 2021.3.4f1
+- Unity Editor 2021.3.4f1
+- Visual Studio 2022
 
-## 開発
+## ドキュメント
 
-- [C# のコーディング規則](https://docs.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/coding-conventions#naming-conventions)に従う
+- [開発の流れ](docs/CONTRIBUTING.md)
