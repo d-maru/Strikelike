@@ -5,24 +5,13 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     public GameObject piece;
-    public bool on = true;
+    public bool pieceSlected = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        // すべてのマスの座標を二次元配列でいれておく
-        // マスの位置情報と座標を対応させる
-        // cubeから位置情報を貰っておく必要がありそう？
-        // ここではマスかぶりを防ぐ
 
-        int?[][]cubeMap =
-        {
-            new int?[]{null, null, null, null},
-            new int?[]{null, null, null, null},
-            new int?[]{null, null, null, null},
-            new int?[]{null, null, null, null}
-        };
     }
 
     // Update is called once per frame
@@ -31,30 +20,23 @@ public class BoardManager : MonoBehaviour
         // ここで移動させたい駒を選択する
         // 将来的にはここで移動可能かどうか調べる
 
-        if (Input.GetMouseButtonDown(0) && on == true)
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Piece"))
+            if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("aaa");
-                on = false;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0) && on == false)
-        {
-            Ray raySecond = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitSecond;
-            Debug.Log("bbb");
-
-            if (Physics.Raycast(raySecond, out hitSecond) && hitSecond.collider.CompareTag("Cube"))
-            {
-                Debug.Log("ccc");
-                float x = Mathf.RoundToInt(hitSecond.point.x);
-                float z = Mathf.RoundToInt(hitSecond.point.z);
-                piece.transform.position = new Vector3(x, 0, z);
-                on = true;
+                if (hit.collider.CompareTag("Piece"))
+                {
+                    pieceSlected = true;
+                }
+                else if(hit.collider.CompareTag("Cube") && pieceSlected)
+                {
+                    pieceSlected = false;
+                    float x = Mathf.RoundToInt(hit.point.x);
+                    float z = Mathf.RoundToInt(hit.point.z);
+                    piece.transform.position = new Vector3(x, 0, z);
+                }
             }
         }
     }
