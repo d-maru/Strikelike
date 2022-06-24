@@ -5,13 +5,13 @@ using UnityEngine;
 
 public struct Status
 {
-    public int hp;
-    public int attack;
+    public int hp { get; set; }
+    public int attack { get; set; }
    
-    public Status(int _hp,int _attack)
+    public Status(int hp,int attack)
     {
-        hp = _hp;
-        attack = _attack; 
+        this.hp = hp;
+        this.attack = attack; 
     }
 }
 public class PieceBase : MonoBehaviour
