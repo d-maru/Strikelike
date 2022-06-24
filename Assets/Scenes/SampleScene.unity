@@ -298,7 +298,7 @@ PrefabInstance:
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0233798
+      value: -0.52
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb,
         type: 3}
@@ -1528,6 +1528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piece: {fileID: 923782032}
+  pieceSlected: 0
 --- !u!1001 &1321110026
 PrefabInstance:
   m_ObjectHideFlags: 0
