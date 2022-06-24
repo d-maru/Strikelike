@@ -24,7 +24,7 @@ public class BoardManager : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 if (hit.collider.CompareTag("Piece"))
                 {
@@ -33,8 +33,8 @@ public class BoardManager : MonoBehaviour
                 else if(hit.collider.CompareTag("Cube") && pieceSlected)
                 {
                     pieceSlected = false;
-                    float x = Mathf.RoundToInt(hit.point.x);
-                    float z = Mathf.RoundToInt(hit.point.z);
+                    float x = hit.collider.gameObject.transform.position.x;
+                    float z = hit.collider.gameObject.transform.position.z;
                     piece.transform.position = new Vector3(x, 0, z);
                 }
             }
