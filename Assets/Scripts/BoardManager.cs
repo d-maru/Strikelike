@@ -29,6 +29,7 @@ public class BoardManager : MonoBehaviour
                 if (hit.collider.CompareTag("Piece"))
                 {
                     pieceSlected = true;
+                    piece = hit.collider.gameObject;
                 }
                 else if(hit.collider.CompareTag("Cube") && pieceSlected)
                 {
