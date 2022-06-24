@@ -2229,17 +2229,17 @@ PrefabInstance:
     - target: {fileID: 2410267116573993298, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -734.92676
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2410267116573993298, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -364.48297
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2410267116573993298, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.406989
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2410267116573993298, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
         type: 3}
@@ -2276,10 +2276,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4451618182539800084, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451618182539800084, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.102
+      objectReference: {fileID: 0}
+    - target: {fileID: 4451618182539800084, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6942399219383519492, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
         type: 3}
       propertyPath: m_Name
       value: HpBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881253558320905082, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881253558320905082, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881253558320905082, guid: f2aab9b5e91bac44ba81b5de6e0de2e6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2aab9b5e91bac44ba81b5de6e0de2e6, type: 3}
