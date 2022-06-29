@@ -18,3 +18,9 @@ public class PieceBase : MonoBehaviour
 {
     public Status status { get; set; }
 }
+
+public enum Pieceside
+{
+    Player,
+    Opponent 
+}
