@@ -21,6 +21,6 @@ public class PieceBase : MonoBehaviour
 
 public enum Pieceside
 {
-    player,
-    opponent 
+    Player,
+    Opponent 
 }
