@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piececontoroller : MonoBehaviour
+public class PieceContoroller : MonoBehaviour
 {
     // ˆÚ“®‰Â”\‚È‹——£‚ğİ’è
 
