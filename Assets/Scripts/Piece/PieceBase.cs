@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Pieceside
+{
+    Player,
+    Opponent
+}
 
 public struct Status
 {
@@ -17,10 +22,5 @@ public struct Status
 public class PieceBase : MonoBehaviour
 {
     public Status status { get; set; }
-}
-
-public enum Pieceside
-{
-    Player,
-    Opponent 
+    public Pieceside Player;
 }
