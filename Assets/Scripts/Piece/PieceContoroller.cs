@@ -20,5 +20,8 @@ public class PieceContoroller : MonoBehaviour
     // Transform.position‚ÅˆÚ“®‚·‚é
     // «—ˆ“I‚É‚ÍTranslate‚ÅˆÚ“®‚·‚é
 
-
+    public GameObject GetPieceObject()
+    {
+        return transform.Find("polySurface1").gameObject;
+    }
 }
