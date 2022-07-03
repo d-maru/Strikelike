@@ -10,13 +10,13 @@ public enum Pieceside
 
 public struct Status
 {
-    public int Hp { get; set; }
+	public int Hp { get; set; }
     public int Attack { get; set; }
-
-    public Status(int hp,int attack)
-    {
+    public Status(int hp,int attack, string pieceName)
+    { 
         Hp = hp;
         Attack = attack;
+        this.pieceName = pieceName;
     }
 }
 public abstract class PieceBase : MonoBehaviour
