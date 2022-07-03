@@ -24,22 +24,22 @@ public abstract class PieceBase : MonoBehaviour
     public Status Status { get; set; }
     public Pieceside Side;
     /// <summary>
-    /// ç¾åœ¨åœ°(ã©ã®cubeã®ä¸Šã«ã„ã‚‹ã‹)
+    /// Œ»İ’n(‚Ç‚Ìcube‚Ìã‚É‚¢‚é‚©)
     /// </summary>
     public CubeBase OnCube { get; set; }
 
     /// <summary>
-    /// è‡ªåˆ†ãŒè¡Œã‘ã‚‹ãƒã‚¹ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™æŠ½è±¡é–¢æ•°
-    /// å¼•æ•° : ãªã—
-    /// è¿”ã‚Šå€¤ : ãƒã‚¹ã®ãƒªã‚¹ãƒˆ
+    /// ©•ª‚ªs‚¯‚éƒ}ƒX‚ÌƒŠƒXƒg‚ğ•Ô‚·’ŠÛŠÖ”
+    /// ˆø” : ‚È‚µ
+    /// •Ô‚è’l : ƒ}ƒX‚ÌƒŠƒXƒg
     /// </summary>
-    /// <returns>è‡ªåˆ†ãŒè¡Œã‘ã‚‹ãƒã‚¹ã®ãƒªã‚¹ãƒˆ</returns>
+    /// <returns>©•ª‚ªs‚¯‚éƒ}ƒX‚ÌƒŠƒXƒg</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
 
     
 
     /// <summary>
-    /// ã‚³ãƒã®è¦‹ãŸç›®ã«é–¢ã™ã‚‹è¨­å®šã‚’è¡Œã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
+    /// ƒRƒ}‚ÌŒ©‚½–Ú‚ÉŠÖ‚·‚éİ’è‚ğs‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
     /// </summary>
     /// <returns></returns>
     public GameObject GetMeshObject()
