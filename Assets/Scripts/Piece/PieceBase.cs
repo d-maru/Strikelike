@@ -10,22 +10,36 @@ public enum Pieceside
 
 public struct Status
 {
-    public int hp { get; set; }
-    public int attack { get; set; }
-   
+    public int Hp { get; set; }
+    public int Attack { get; set; }
+
     public Status(int hp,int attack)
     {
-        this.hp = hp;
-        this.attack = attack; 
+        Hp = hp;
+        Attack = attack;
     }
 }
-public class PieceBase : MonoBehaviour
+public abstract class PieceBase : MonoBehaviour
 {
-    public Status status { get; set; }
+    public Status Status { get; set; }
     public Pieceside Side;
+    /// <summary>
+    /// 現在地(どのcubeの上にいるか)
+    /// </summary>
+    public CubeBase OnCube { get; set; }
 
     /// <summary>
-    /// �R�}�̌����ڂɊւ���ݒ���s���Ă���I�u�W�F�N�g���擾
+    /// 自分が行けるマスのリストを返す抽象関数
+    /// 引数 : なし
+    /// 返り値 : マスのリスト
+    /// </summary>
+    /// <returns>自分が行けるマスのリスト</returns>
+    public abstract HashSet<CubeBase> getCanMoveCubeSet();
+
+    
+
+    /// <summary>
+    /// コマの見た目に関する設定を行っているオブジェクトを取得
     /// </summary>
     /// <returns></returns>
     public GameObject GetMeshObject()
