@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IPlayer
 {
-    public GameObject piece;
+    public PieceBase piece;
     public bool pieceSlected = false;
 
     // Start is called before the first frame update
@@ -27,17 +27,20 @@ public class Player : MonoBehaviour, IPlayer
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if (hit.collider.CompareTag("Piece"))
+                Collider hitCollider = hit.collider;
+                if (hitCollider.CompareTag("Piece"))
                 {
                     pieceSlected = true;
-                    piece = hit.collider.gameObject;
+                    piece = hitCollider.gameObject.GetComponent<PieceBase>();
                 }
-                else if (hit.collider.CompareTag("Cube") && pieceSlected)
+                else if (hitCollider.CompareTag("Cube") && pieceSlected)
                 {
                     pieceSlected = false;
-                    float x = hit.collider.gameObject.transform.position.x;
-                    float z = hit.collider.gameObject.transform.position.z;
-                    piece.transform.position = new Vector3(x, 0, z);
+                    CubeBase cube = hitCollider.gameObject.GetComponent<CubeBase>();
+                    // if (piece.getCanMoveCubeSet().Contains(cube))
+                    // {
+                        piece.transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
+                    // }
                 }
             }
         }
