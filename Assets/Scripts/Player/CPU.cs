@@ -24,7 +24,7 @@ public class CPU : MonoBehaviour, IPlayer
     {
         return transform.Find("polySurface1").gameObject;
     }
-}
+
     public void Play()
     {
 
