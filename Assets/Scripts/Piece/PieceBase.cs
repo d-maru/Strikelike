@@ -12,11 +12,13 @@ public struct Status
 {
     public int hp { get; set; }
     public int attack { get; set; }
+    public string pieceName { get; set; }
    
-    public Status(int hp,int attack)
+    public Status(int hp,int attack, string pieceName)
     {
         this.hp = hp;
         this.attack = attack; 
+        this.pieceName = pieceName;
     }
 }
 public class PieceBase : MonoBehaviour
