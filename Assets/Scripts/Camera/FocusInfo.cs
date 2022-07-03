@@ -7,7 +7,7 @@ public class FocusInfo : MonoBehaviour
     GameObject currentFocusObject;
     Color preFocusColor;
 
-    //StopWatchを定義
+    // StopWatchを定義
     System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
     
 
@@ -30,7 +30,12 @@ public class FocusInfo : MonoBehaviour
         {
             if (hit.collider.CompareTag("Piece"))
             {
-                //justFocusObject =hit.collider.gameObject;
+
+                if (hit.collider.gameObject.GetComponent<PieceContoroller>())
+                {
+                    PieceContoroller pieceContoroller = hit.collider.gameObject.GetComponent<PieceContoroller>();
+                    justFocusObject = pieceContoroller.GetMeshObject();
+                }
             }
             else if (hit.collider.CompareTag("Cube"))
             {
@@ -40,23 +45,23 @@ public class FocusInfo : MonoBehaviour
 
         if(justFocusObject !=null && justFocusObject != currentFocusObject)
         {
-            //フォーカスから外れたオブジェクトの色を元に戻す
+            // フォーカスから外れたオブジェクトの色を元に戻す
             if (currentFocusObject)
             {
                 currentFocusObject.GetComponent<Renderer>().material.color = preFocusColor;
             }
 
-            //新しいフォーカスオブジェクトの設定と色を覚えておく
+            // 新しいフォーカスオブジェクトの設定と色を覚えておく
             currentFocusObject = justFocusObject;
             preFocusColor = currentFocusObject.GetComponent<Renderer>().material.color;
 
             sw.Reset();
-            sw.Start(); //計測開始
+            sw.Start(); // 計測開始
 
         }
         else if(justFocusObject == null)
         {
-            //フォーカスから外れたオブジェクトの色を元に戻す
+            // フォーカスから外れたオブジェクトの色を元に戻す
             if (currentFocusObject)
             {
                 currentFocusObject.GetComponent<Renderer>().material.color = preFocusColor;
@@ -81,7 +86,7 @@ public class FocusInfo : MonoBehaviour
         Color _color = currentFocusObject.GetComponent<Renderer>().material.color;
 
         float brightness = Mathf.Sin((float)sw.Elapsed.TotalSeconds) / 2 + 0.5f;
-        _color = SetBrightNess(_color, brightness + 1f);
+        _color = SetBrightNess(_color, brightness + 2f);
         currentFocusObject.GetComponent<Renderer>().material.color = _color;
         //Debug.Log(brightness);
     }
