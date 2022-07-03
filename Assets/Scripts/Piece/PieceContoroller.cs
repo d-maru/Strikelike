@@ -20,5 +20,12 @@ public class PieceContoroller : MonoBehaviour
     // Transform.positionで移動する
     // 将来的にはTranslateで移動する
 
-
+    /// <summary>
+    /// コマの見た目に関する設定を行っているオブジェクトを取得
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetMeshObject()
+    {
+        return transform.Find("polySurface1").gameObject;
+    }
 }
