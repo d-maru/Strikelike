@@ -13,7 +13,7 @@ public struct Status
     public int Hp { get; set; }
     public int Attack { get; set; }
 
-    public Status(int hp,int attack, int moveDistance)
+    public Status(int hp,int attack)
     {
         Hp = hp;
         Attack = attack;
@@ -24,22 +24,22 @@ public abstract class PieceBase : MonoBehaviour
     public Status Status { get; set; }
     public Pieceside Side;
     /// <summary>
-    /// Œ»İ’n(‚Ç‚Ìcube‚Ìã‚É‚¢‚é‚©)
+    /// ç¾åœ¨åœ°(ã©ã®cubeã®ä¸Šã«ã„ã‚‹ã‹)
     /// </summary>
     public CubeBase OnCube { get; set; }
 
     /// <summary>
-    /// ©•ª‚ªs‚¯‚éƒ}ƒX‚ÌƒŠƒXƒg‚ğ•Ô‚·’ŠÛŠÖ”
-    /// ˆø” : ‚È‚µ
-    /// •Ô‚è’l : ƒ}ƒX‚ÌƒŠƒXƒg
+    /// è‡ªåˆ†ãŒè¡Œã‘ã‚‹ãƒã‚¹ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™æŠ½è±¡é–¢æ•°
+    /// å¼•æ•° : ãªã—
+    /// è¿”ã‚Šå€¤ : ãƒã‚¹ã®ãƒªã‚¹ãƒˆ
     /// </summary>
-    /// <returns>©•ª‚ªs‚¯‚éƒ}ƒX‚ÌƒŠƒXƒg</returns>
+    /// <returns>è‡ªåˆ†ãŒè¡Œã‘ã‚‹ãƒã‚¹ã®ãƒªã‚¹ãƒˆ</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
 
     
 
     /// <summary>
-    /// ƒRƒ}‚ÌŒ©‚½–Ú‚ÉŠÖ‚·‚éİ’è‚ğs‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
+    /// ã‚³ãƒã®è¦‹ãŸç›®ã«é–¢ã™ã‚‹è¨­å®šã‚’è¡Œã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
     /// </summary>
     /// <returns></returns>
     public GameObject GetMeshObject()
