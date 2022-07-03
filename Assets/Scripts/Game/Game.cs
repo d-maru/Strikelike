@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieceContoroller : MonoBehaviour
+public class Game : MonoBehaviour
 {
-    // ˆÚ“®‰Â”\‚È‹——£‚ğİ’è
+    public Player User;
+    private bool isPlayerTurn = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        User.Play();
     }
-    // Transform.position‚ÅˆÚ“®‚·‚é
-    // «—ˆ“I‚É‚ÍTranslate‚ÅˆÚ“®‚·‚é
-
-
 }

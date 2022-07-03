@@ -22,5 +22,5 @@ public struct Status
 public class PieceBase : MonoBehaviour
 {
     public Status status { get; set; }
-    public Pieceside Player;
+    public Pieceside Side;
 }
