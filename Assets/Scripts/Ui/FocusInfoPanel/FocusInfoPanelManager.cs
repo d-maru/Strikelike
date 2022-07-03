@@ -43,7 +43,7 @@ public class FocusInfoPanelManager : MonoBehaviour
             if (piece != null)
             {
                 FocusInfoPanel.SetActive(true);
-                UpdatePieceDetailInfo(piece.status);
+                UpdatePieceDetailInfo(piece.Status);
             }
             else
             {
@@ -57,7 +57,7 @@ public class FocusInfoPanelManager : MonoBehaviour
         }
     }
 
-    public void UpdatePieceDetailInfo(Status status)
+    void UpdatePieceDetailInfo(Status status)
     {
         UpdateAttack(status);
         UpdateHp(status);
