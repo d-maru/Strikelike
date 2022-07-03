@@ -66,14 +66,14 @@ public class FocusInfoPanelManager : MonoBehaviour
 
    void UpdateHp(Status status)
     {
-        HPDisplay.text = string.Format("HP:{0}/{1}", status.hp, status.hp);
+        HPDisplay.text = string.Format("HP:{0}/{1}", status.Hp, status.Hp);
     }
     void UpdateAttack(Status status)
     {
-        AttackDisplay.text = string.Format("Atk:{0}", status.attack);
+        AttackDisplay.text = string.Format("Atk:{0}", status.Attack);
     }
     void UpdatePiceName(Status status)
     {
-        PieceNameDisplay.text = string.Format("Name:{0}", status.pieceName);
+        PieceNameDisplay.text = string.Format("Name:{0}", status.PieceName);
     }
 }
