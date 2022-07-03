@@ -31,9 +31,9 @@ public class FocusInfo : MonoBehaviour
             if (hit.collider.CompareTag("Piece"))
             {
 
-                if (hit.collider.gameObject.GetComponent<PieceContoroller>())
+                if (hit.collider.gameObject.GetComponent<PieceBase>())
                 {
-                    PieceContoroller pieceContoroller = hit.collider.gameObject.GetComponent<PieceContoroller>();
+                    PieceBase pieceContoroller = hit.collider.gameObject.GetComponent<PieceBase>();
                     justFocusObject = pieceContoroller.GetMeshObject();
                 }
             }
