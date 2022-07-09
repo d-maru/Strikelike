@@ -27,7 +27,7 @@ public abstract class CubeBase : MonoBehaviour
     /// <summary>
     /// 上に乗っているコマオブジェクト
     /// </summary>
-    public GameObject Piece { get; set; }
+    public PieceBase Piece { get; set; }
 
     /// <summary>
     /// 隣接マス
@@ -42,8 +42,8 @@ public abstract class CubeBase : MonoBehaviour
     public bool CanMove(Direction direction)
     {
         // 隣接キューブが存在 かつ その隣接キューブ上にコマが無いなら移動可能
-        if(AdjacentCubes[direction] != null)
-            if (AdjacentCubes[direction].Piece == null)
+        if(AdjacentCubes[direction] is not null)
+            if (AdjacentCubes[direction].Piece is null)
                 return true;
         return false;
     }

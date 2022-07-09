@@ -37,10 +37,13 @@ public class Player : MonoBehaviour, IPlayer
                 {
                     pieceSlected = false;
                     CubeBase cube = hitCollider.gameObject.GetComponent<CubeBase>();
-                    // if (piece.getCanMoveCubeSet().Contains(cube))
-                    // {
+                    if (piece.getCanMoveCubeSet().Contains(cube))
+                    {
                         piece.transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
-                    // }
+                        piece.OnCube.Piece = null;
+                        piece.OnCube = cube;
+                        cube.Piece = piece;
+                    }
                 }
             }
         }

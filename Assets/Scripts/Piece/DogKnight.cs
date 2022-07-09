@@ -7,7 +7,7 @@ public class DogKnight : PieceBase
     /// <summary>
     /// 移動可能距離
     /// </summary>
-    public static int DefaultMoveDistance { get; } = 1;
+    public static int DefaultMoveDistance { get; } = 2;
 
     // Start is called before the first frame update
     void Start()
