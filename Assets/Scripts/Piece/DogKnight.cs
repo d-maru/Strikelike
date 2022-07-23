@@ -57,4 +57,22 @@ public class DogKnight : PieceBase
 
         return RecursiveGetCubes(cubeSet, OnCube, DefaultMoveDistance);
     }
+
+    /// <summary>
+    /// 犬騎士オブジェクトのメッシュオブジェクト取得
+    /// </summary>
+    /// <returns></returns>
+    public override GameObject GetMeshGameObject()
+    {
+        return transform.Find("polySurface1").gameObject;
+    }
+
+    /// <summary>
+    /// 犬騎士オブジェクトを取得する関数
+    /// </summary>
+    /// <returns></returns>
+    public override GameObject GetGameObject()
+    {
+        return transform.gameObject;
+    }
 }

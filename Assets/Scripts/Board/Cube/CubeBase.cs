@@ -17,7 +17,7 @@ public enum Direction
 /// cubeの抽象クラス
 /// 各マスで継承してね！
 /// </summary>
-public abstract class CubeBase : MonoBehaviour
+public abstract class CubeBase : MonoBehaviour, IMeshObject
 {
     /// <summary>
     /// 現在地(2次元的に何行何列目か)
@@ -47,4 +47,16 @@ public abstract class CubeBase : MonoBehaviour
                 return true;
         return false;
     }
+
+    /// <summary>
+    /// キューブの見た目に関する設定を行っているオブジェクトを取得する抽象関数
+    /// </summary>
+    /// <returns></returns>
+    public abstract GameObject GetMeshGameObject();
+
+    /// <summary>
+    /// キューブを取得する抽象関数
+    /// </summary>
+    /// <returns></returns>
+    public abstract GameObject GetGameObject();
 }

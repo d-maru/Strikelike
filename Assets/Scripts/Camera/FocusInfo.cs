@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FocusInfo : MonoBehaviour
 {
-    GameObject currentFocusMeshObject;
+    IMeshObject currentFocusObject;
     Color preFocusColor;
 
     // StopWatchを定義
@@ -14,67 +14,59 @@ public class FocusInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentFocusMeshObject = null;
+        currentFocusObject = null;
         preFocusColor = new Color32(0, 0, 0, 0);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        GameObject justFocusMeshObject =null;
+        IMeshObject justFocusObject = null;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            if (hit.collider.CompareTag("Piece"))
+            //フォーカスできるオブジェクトはIMeshObjectを継承したコンポーネントを持っているはずなので
+            IMeshObject focusObjectBase = hit.collider.GetComponent<IMeshObject>();
+            if (focusObjectBase != null)
             {
-
-                if (hit.collider.gameObject.GetComponent<PieceBase>())
-                {
-                    PieceBase pieceContoroller = hit.collider.gameObject.GetComponent<PieceBase>();
-                    justFocusMeshObject = pieceContoroller.GetMeshObject();
-                }
-            }
-            else if (hit.collider.CompareTag("Cube"))
-            {
-
-                justFocusMeshObject = hit.collider.gameObject;
+                justFocusObject = focusObjectBase;
             }
         }
 
-        if(justFocusMeshObject !=null && justFocusMeshObject != currentFocusMeshObject)
+        if (justFocusObject != null && justFocusObject != currentFocusObject)
         {
             // フォーカスから外れたオブジェクトの色を元に戻す
-            if (currentFocusMeshObject)
+            if (currentFocusObject != null)
             {
-                currentFocusMeshObject.GetComponent<Renderer>().material.color = preFocusColor;
+                currentFocusObject.GetMeshGameObject().GetComponent<Renderer>().material.color = preFocusColor;
             }
 
             // 新しいフォーカスオブジェクトの設定と色を覚えておく
-            currentFocusMeshObject = justFocusMeshObject;
-            preFocusColor = currentFocusMeshObject.GetComponent<Renderer>().material.color;
+            currentFocusObject = justFocusObject;
+            preFocusColor = currentFocusObject.GetMeshGameObject().GetComponent<Renderer>().material.color;
 
             sw.Reset();
             sw.Start(); // 計測開始
 
         }
-      
-        else if(justFocusMeshObject == null)
+
+        else if (justFocusObject == null)
         {
             // フォーカスから外れたオブジェクトの色を元に戻す
-            
-            if (currentFocusMeshObject)
+
+            if (currentFocusObject != null)
             {
-                
-                currentFocusMeshObject.GetComponent<Renderer>().material.color = preFocusColor;
+
+                currentFocusObject.GetMeshGameObject().GetComponent<Renderer>().material.color = preFocusColor;
             }
 
-            
-            currentFocusMeshObject = justFocusMeshObject;
+
+            currentFocusObject = justFocusObject;
         }
-        
-        else if(currentFocusMeshObject !=null && currentFocusMeshObject)
+
+        else if (currentFocusObject != null)
         {
             ChangeBrightNess();
         }
@@ -84,18 +76,18 @@ public class FocusInfo : MonoBehaviour
     public void ChangeBrightNess()
     {
        
-        if (currentFocusMeshObject == null)
+        if (currentFocusObject == null)
         {
             return;
         }
 
        
-        Color _color = currentFocusMeshObject.GetComponent<Renderer>().material.color;
+        Color _color = currentFocusObject.GetMeshGameObject().GetComponent<Renderer>().material.color;
 
         float brightness = Mathf.Sin((float)sw.Elapsed.TotalSeconds) / 2 + 0.5f;
         _color = SetBrightNess(_color, brightness + 2f);
        
-        currentFocusMeshObject.GetComponent<Renderer>().material.color = _color;
+        currentFocusObject.GetMeshGameObject().GetComponent<Renderer>().material.color = _color;
         //Debug.Log(brightness);
     }
 
@@ -112,26 +104,19 @@ public class FocusInfo : MonoBehaviour
 
     public GameObject GetCurrentFocusMeshObject()
     {
-        return currentFocusMeshObject;
+        if(currentFocusObject == null)
+        {
+            return null;
+        }
+        return currentFocusObject.GetMeshGameObject();
     }
 
     public GameObject GetCurrentFocusObject()
     {
-        if (currentFocusMeshObject == null)
+        if (currentFocusObject == null)
         {
             return null;
         }
-
-        if (currentFocusMeshObject.CompareTag("Cube"))
-        {
-            // キューブはメッシュオブジェクト＝実際のゲームオブジェクト
-            return currentFocusMeshObject;
-        }
-
-        else
-        {
-            // 犬コマはメッシュオブジェクトの親オブジェクトが実際のゲームオブジェクトなので
-            return currentFocusMeshObject.transform.parent.gameObject;
-        }
+        return currentFocusObject.GetGameObject();
     }
 }
