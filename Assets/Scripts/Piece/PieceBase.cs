@@ -20,7 +20,7 @@ public struct Status
         PieceName = pieceName;
     }
 }
-public abstract class PieceBase : MonoBehaviour,IObjectBase
+public abstract class PieceBase : MonoBehaviour,IMeshObject
 {
     public Status Status { get; set; }
     public Pieceside Side;

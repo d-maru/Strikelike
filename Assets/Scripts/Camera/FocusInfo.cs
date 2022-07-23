@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FocusInfo : MonoBehaviour
 {
-    IObjectBase currentFocusObject;
+    IMeshObject currentFocusObject;
     Color preFocusColor;
 
     // StopWatchを定義
@@ -21,14 +21,14 @@ public class FocusInfo : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        IObjectBase justFocusObject = null;
+        IMeshObject justFocusObject = null;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            //フォーカスできるオブジェクトはIObjectBaseを継承したコンポーネントを持っているはずなので
-            IObjectBase focusObjectBase = hit.collider.GetComponent<IObjectBase>();
+            //フォーカスできるオブジェクトはIMeshObjectを継承したコンポーネントを持っているはずなので
+            IMeshObject focusObjectBase = hit.collider.GetComponent<IMeshObject>();
             if (focusObjectBase != null)
             {
                 justFocusObject = focusObjectBase;

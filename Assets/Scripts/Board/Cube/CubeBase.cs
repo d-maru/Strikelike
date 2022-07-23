@@ -17,7 +17,7 @@ public enum Direction
 /// cubeの抽象クラス
 /// 各マスで継承してね！
 /// </summary>
-public abstract class CubeBase : MonoBehaviour, IObjectBase
+public abstract class CubeBase : MonoBehaviour, IMeshObject
 {
     /// <summary>
     /// 現在地(2次元的に何行何列目か)

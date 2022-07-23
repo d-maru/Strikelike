@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IObjectBase
+interface IMeshObject
 {
     /// <summary>
     /// コマや盤面のオブジェクトから見た目に関するオブジェクトを取得する
