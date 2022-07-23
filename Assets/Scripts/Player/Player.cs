@@ -32,6 +32,9 @@ public class Player : MonoBehaviour, IPlayer
                 {
                     pieceSlected = true;
                     piece = hitCollider.gameObject.GetComponent<PieceBase>();
+
+                    //プレイヤーが動かすコマを選んだらSE再生
+                    SoundManager.Instance.PlayPieceSelectSE();
                 }
                 else if (hitCollider.CompareTag("Cube") && pieceSlected)
                 {

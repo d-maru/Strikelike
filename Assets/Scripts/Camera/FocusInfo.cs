@@ -50,6 +50,16 @@ public class FocusInfo : MonoBehaviour
             sw.Reset();
             sw.Start(); // 計測開始
 
+
+            //フォーカスが変わったのでSEを再生
+            if (justFocusObject.GetGameObject().GetComponent<PieceBase>())
+            {
+                SoundManager.Instance.PlayFocusPieceSE();
+            }
+            if (justFocusObject.GetGameObject().GetComponent<Cube>())
+            {
+                SoundManager.Instance.PlayFocusCubeSE();
+            }
         }
 
         else if (justFocusObject == null)
