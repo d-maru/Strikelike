@@ -11,6 +11,7 @@
 2. branchを切る
 3. コードを書く
     - [C# のコーディング規則](https://docs.microsoft.com/ja-jp/dotnet/csharp/fundamentals/coding-style/coding-conventions#naming-conventions)になるべく従うこと
+    - 厳密に守る必要はありませんが、できるだけ一行を100文字以下に収める
     - 用語や英単語に関しては[仕様書](specification/)で使われているものに統一する
 4. commitする
 5. pushする
