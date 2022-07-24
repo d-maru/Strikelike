@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    /// <summary>
+    /// ゲーム中でサウンドを出す処理は一つで良いのでシングルトンを仕様
+    /// 仮にシーン間の移動があった場合は移動先シーンで作成されたサウンド管理オブジェクトは
+    /// 削除するようにして常に単一のオブジェクトだけになるようにしている
+    /// </summary>
     public static SoundManager Instance { get; private set; }
 
     private void Awake()
@@ -11,7 +16,7 @@ public class SoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
