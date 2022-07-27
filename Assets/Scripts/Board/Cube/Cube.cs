@@ -7,10 +7,12 @@ using UnityEngine;
 /// </summary>
 public class Cube : CubeBase
 {
+    Color originColor;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        originColor = GetMeshGameObject().GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
@@ -35,5 +37,18 @@ public class Cube : CubeBase
     public override GameObject GetGameObject()
     {
         return transform.gameObject;
+    }
+
+    public override Color GetOriginColor()
+    {
+        return originColor;
+    }
+
+    /// <summary>
+    /// オブジェクトを元の色に戻す
+    /// </summary>
+    public override void ResetOriginColor()
+    {
+        GetMeshGameObject().GetComponent<Renderer>().material.color = originColor;
     }
 }

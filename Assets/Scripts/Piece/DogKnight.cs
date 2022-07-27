@@ -8,11 +8,12 @@ public class DogKnight : PieceBase
     /// 移動可能距離
     /// </summary>
     public static int DefaultMoveDistance { get; } = 1;
+    Color originColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        originColor = GetMeshGameObject().GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
@@ -74,5 +75,24 @@ public class DogKnight : PieceBase
     public override GameObject GetGameObject()
     {
         return transform.gameObject;
+    }
+
+    /// <summary>
+    /// フォーカスによって見た目が変わる前のもともとのカラーを取得する
+    /// 各オブジェクトのstartでローカル変数に保存しておいてそれを呼び出す形になる
+    /// 基底クラス作ってやりたいけど面倒なので
+    /// </summary>
+    /// <returns></returns>
+    public override Color GetOriginColor()
+    {
+        return originColor;
+    }
+
+    /// <summary>
+    /// オブジェクトを元の色に戻す
+    /// </summary>
+    public override void ResetOriginColor()
+    {
+        GetMeshGameObject().GetComponent<Renderer>().material.color = originColor;
     }
 }

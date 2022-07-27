@@ -51,4 +51,17 @@ public abstract class PieceBase : MonoBehaviour,IMeshObject
     /// <returns></returns>
     public abstract GameObject GetGameObject();
 
+    /// <summary>
+    /// フォーカスによって見た目が変わる前のもともとのカラーを取得する
+    /// 各オブジェクトのstartでローカル変数に保存しておいてそれを呼び出す形になる
+    /// 基底クラス作ってやりたいけど面倒なので
+    /// </summary>
+    /// <returns></returns>
+    public abstract Color GetOriginColor();
+
+    /// <summary>
+    /// オブジェクトを元の色に戻す
+    /// </summary>
+    public abstract void ResetOriginColor();
+
 }
