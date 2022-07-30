@@ -17,7 +17,7 @@ public enum Direction
 /// cubeの抽象クラス
 /// 各マスで継承してね！
 /// </summary>
-public abstract class CubeBase : MonoBehaviour, IMeshObject
+public abstract class CubeBase : GameObjectBase
 {
     /// <summary>
     /// 現在地(2次元的に何行何列目か)
@@ -47,29 +47,4 @@ public abstract class CubeBase : MonoBehaviour, IMeshObject
                 return true;
         return false;
     }
-
-    /// <summary>
-    /// キューブの見た目に関する設定を行っているオブジェクトを取得する抽象関数
-    /// </summary>
-    /// <returns></returns>
-    public abstract GameObject GetMeshGameObject();
-
-    /// <summary>
-    /// キューブを取得する抽象関数
-    /// </summary>
-    /// <returns></returns>
-    public abstract GameObject GetGameObject();
-
-    /// <summary>
-    /// フォーカスによって見た目が変わる前のもともとのカラーを取得する
-    /// 各オブジェクトのstartでローカル変数に保存しておいてそれを呼び出す形になる
-    /// 基底クラス作ってやりたいけど面倒なので
-    /// </summary>
-    /// <returns></returns>
-    public abstract Color GetOriginColor();
-
-    /// <summary>
-    /// オブジェクトを元の色に戻す
-    /// </summary>
-    public abstract void ResetOriginColor();
 }

@@ -8,12 +8,12 @@ public class DogKnight : PieceBase
     /// 移動可能距離
     /// </summary>
     public static int DefaultMoveDistance { get; } = 1;
-    Color originColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        originColor = GetMeshGameObject().GetComponent<Renderer>().material.color;
+        // 見た目に関するオブジェクトが何であるかは一番はじめに設定しておく必要がある
+        GetMeshGameManager().SetMeshGameObject(transform.Find("polySurface1").gameObject);
     }
 
     // Update is called once per frame
@@ -57,42 +57,5 @@ public class DogKnight : PieceBase
         var cubeSet = new HashSet<CubeBase>();
 
         return RecursiveGetCubes(cubeSet, OnCube, DefaultMoveDistance);
-    }
-
-    /// <summary>
-    /// 犬騎士オブジェクトのメッシュオブジェクト取得
-    /// </summary>
-    /// <returns></returns>
-    public override GameObject GetMeshGameObject()
-    {
-        return transform.Find("polySurface1").gameObject;
-    }
-
-    /// <summary>
-    /// 犬騎士オブジェクトを取得する関数
-    /// </summary>
-    /// <returns></returns>
-    public override GameObject GetGameObject()
-    {
-        return transform.gameObject;
-    }
-
-    /// <summary>
-    /// フォーカスによって見た目が変わる前のもともとのカラーを取得する
-    /// 各オブジェクトのstartでローカル変数に保存しておいてそれを呼び出す形になる
-    /// 基底クラス作ってやりたいけど面倒なので
-    /// </summary>
-    /// <returns></returns>
-    public override Color GetOriginColor()
-    {
-        return originColor;
-    }
-
-    /// <summary>
-    /// オブジェクトを元の色に戻す
-    /// </summary>
-    public override void ResetOriginColor()
-    {
-        GetMeshGameObject().GetComponent<Renderer>().material.color = originColor;
     }
 }

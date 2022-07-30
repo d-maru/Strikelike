@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FocusInfo : MonoBehaviour
 {
-    IMeshObject currentFocusObject;
+    MeshObjectManager currentFocusMeshObjectManager;
    
 
     // StopWatchを定義
@@ -14,40 +14,40 @@ public class FocusInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentFocusObject = null;
+        currentFocusMeshObjectManager = null;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        IMeshObject justFocusObject = null;
+        MeshObjectManager justFocusMeshObjectManager = null;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
        
         //今のフォーカスを検索
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            // フォーカスできるオブジェクトはIMeshObjectを継承したコンポーネントを持っているはずなので
-            IMeshObject focusObjectBase = hit.collider.GetComponent<IMeshObject>();
+            // フォーカスできるオブジェクトはGameObjectBaseを継承したコンポーネントを持っているはずなので
+            GameObjectBase focusObjectBase = hit.collider.GetComponent<GameObjectBase>();
             if (focusObjectBase != null)
             {
-                justFocusObject = focusObjectBase;
+                justFocusMeshObjectManager = focusObjectBase.GetMeshGameManager();
             }
         }
 
         // フォーカスが違うなら更新
         // フォーカスがコマだった場合、移動可能エリアのアニメも元に戻す
-        if (justFocusObject != null && justFocusObject != currentFocusObject)
+        if (justFocusMeshObjectManager != null && justFocusMeshObjectManager != currentFocusMeshObjectManager)
         {
             // フォーカスから外れたオブジェクトの色を元に戻す
-            if (currentFocusObject != null)
+            if (currentFocusMeshObjectManager != null)
             {
-                currentFocusObject.ResetOriginColor();
-                ResetBrightNessEnableMoveAreas(currentFocusObject);
+                currentFocusMeshObjectManager.ResetOriginColor();
+                ResetBrightNessEnableMoveAreas(currentFocusMeshObjectManager);
             }
 
             // 新しいフォーカスオブジェクトの設定
-            currentFocusObject = justFocusObject;
+            currentFocusMeshObjectManager = justFocusMeshObjectManager;
            
 
             sw.Reset();
@@ -55,11 +55,11 @@ public class FocusInfo : MonoBehaviour
 
 
             //フォーカスが変わったのでSEを再生
-            if (justFocusObject.GetGameObject().GetComponent<PieceBase>())
+            if (justFocusMeshObjectManager.GetGameObject().GetComponent<PieceBase>())
             {
                 SoundManager.Instance.PlayFocusPieceSE();
             }
-            if (justFocusObject.GetGameObject().GetComponent<Cube>())
+            if (justFocusMeshObjectManager.GetGameObject().GetComponent<Cube>())
             {
                 SoundManager.Instance.PlayFocusCubeSE();
             }
@@ -67,23 +67,23 @@ public class FocusInfo : MonoBehaviour
 
         // フォーカスがなくなった場合、オブジェクトの色を元に戻す
         // フォーカスがコマだった場合、移動可能エリアのアニメも元に戻す
-        else if (justFocusObject == null)
+        else if (justFocusMeshObjectManager == null)
         {
-            if (currentFocusObject != null)
+            if (currentFocusMeshObjectManager != null)
             {
-                currentFocusObject.ResetOriginColor();
-                ResetBrightNessEnableMoveAreas(currentFocusObject);
+                currentFocusMeshObjectManager.ResetOriginColor();
+                ResetBrightNessEnableMoveAreas(currentFocusMeshObjectManager);
             }
-            currentFocusObject = justFocusObject;
+            currentFocusMeshObjectManager = justFocusMeshObjectManager;
         }
         // フォーカスアニメの更新
         // フォーカスがコマだった場合、移動可能エリアのアニメも行う
-        else if (currentFocusObject != null)
+        else if (currentFocusMeshObjectManager != null)
         {
-            ChangeBrightNess(currentFocusObject,sw);
+            ChangeBrightNess(currentFocusMeshObjectManager,sw);
 
             // コマをフォーカスしているなら移動可能範囲を明度アニメさせる
-            ChangeBrightNessEnableMoveAreas(currentFocusObject);
+            ChangeBrightNessEnableMoveAreas(currentFocusMeshObjectManager);
         }
     }
 
@@ -92,20 +92,20 @@ public class FocusInfo : MonoBehaviour
     /// </summary>
     /// <param name="currentFocusObject"></param>
     /// <param name="sw"></param>
-    public static void ChangeBrightNess(IMeshObject meshObject, System.Diagnostics.Stopwatch sw)
+    public static void ChangeBrightNess(MeshObjectManager MeshObjectManager, System.Diagnostics.Stopwatch sw)
     {
        
-        if (meshObject == null)
+        if (MeshObjectManager == null)
         {
             return;
         }
 
-        Color _color = meshObject.GetMeshGameObject().GetComponent<Renderer>().material.color;
+        Color _color = MeshObjectManager.GetMeshGameObject().GetComponent<Renderer>().material.color;
 
         float brightness = Mathf.Sin((float)sw.Elapsed.TotalSeconds) / 2 + 0.5f;
         _color = SetBrightNess(_color, brightness + 2f);
 
-        meshObject.GetMeshGameObject().GetComponent<Renderer>().material.color = _color;
+        MeshObjectManager.GetMeshGameObject().GetComponent<Renderer>().material.color = _color;
     }
 
     /// <summary>
@@ -124,36 +124,36 @@ public class FocusInfo : MonoBehaviour
     /// <summary>
     /// 引数オブジェクトがコマの場合、動ける範囲のキューブを明度アニメさせる
     /// </summary>
-    /// <param name="currentFocusObject"></param>
-    void ChangeBrightNessEnableMoveAreas(IMeshObject currentFocusObject)
+    /// <param name="currentFocusMeshObjectManager"></param>
+    void ChangeBrightNessEnableMoveAreas(MeshObjectManager currentFocusMeshObjectManager)
     {
-        if (currentFocusObject.GetGameObject().GetComponent<Cube>())
+        if (currentFocusMeshObjectManager.GetGameObject().GetComponent<Cube>())
         {
             return;
         }
 
-        HashSet<CubeBase> enableMoveAreas = currentFocusObject.GetGameObject().GetComponent<PieceBase>().getCanMoveCubeSet();
+        HashSet<CubeBase> enableMoveAreas = currentFocusMeshObjectManager.GetGameObject().GetComponent<PieceBase>().getCanMoveCubeSet();
         foreach (CubeBase enableMoveArea in enableMoveAreas)
         {
-            ChangeBrightNess(enableMoveArea.GetComponent<IMeshObject>(), sw);
+            ChangeBrightNess(enableMoveArea.GetMeshGameManager(), sw);
         }
     }
 
     /// <summary>
     /// 引数オブジェクトがコマの場合、動ける範囲のキューブの明度アニメをリセットする
     /// </summary>
-    /// <param name="currentFocusObject"></param>
-    void ResetBrightNessEnableMoveAreas(IMeshObject currentFocusObject)
+    /// <param name="currentFocusMeshObjectManager"></param>
+    void ResetBrightNessEnableMoveAreas(MeshObjectManager currentFocusMeshObjectManager)
     {
-        if (currentFocusObject.GetGameObject().GetComponent<Cube>())
+        if (currentFocusMeshObjectManager.GetGameObject().GetComponent<Cube>())
         {
             return;
         }
 
-        HashSet<CubeBase> enableMoveAreas = currentFocusObject.GetGameObject().GetComponent<PieceBase>().getCanMoveCubeSet();
+        HashSet<CubeBase> enableMoveAreas = currentFocusMeshObjectManager.GetGameObject().GetComponent<PieceBase>().getCanMoveCubeSet();
         foreach (CubeBase enableMoveArea in enableMoveAreas)
         {
-            enableMoveArea.GetComponent<IMeshObject>().ResetOriginColor();
+            enableMoveArea.GetMeshGameManager().ResetOriginColor();
         }
     }
 
@@ -163,11 +163,11 @@ public class FocusInfo : MonoBehaviour
     /// <returns></returns>
     public GameObject GetCurrentFocusMeshObject()
     {
-        if(currentFocusObject == null)
+        if(currentFocusMeshObjectManager == null)
         {
             return null;
         }
-        return currentFocusObject.GetMeshGameObject();
+        return currentFocusMeshObjectManager.GetMeshGameObject();
     }
 
     /// <summary>
@@ -176,10 +176,10 @@ public class FocusInfo : MonoBehaviour
     /// <returns></returns>
     public GameObject GetCurrentFocusObject()
     {
-        if (currentFocusObject == null)
+        if (currentFocusMeshObjectManager == null)
         {
             return null;
         }
-        return currentFocusObject.GetGameObject();
+        return currentFocusMeshObjectManager.GetGameObject();
     }
 }
