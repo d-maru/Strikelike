@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IPlayer
         
     }
 
-    public void Play()
+    public bool Play()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -46,9 +46,11 @@ public class Player : MonoBehaviour, IPlayer
                         piece.OnCube.Piece = null;
                         piece.OnCube = cube;
                         cube.Piece = piece;
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 }
