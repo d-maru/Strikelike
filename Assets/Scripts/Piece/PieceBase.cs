@@ -20,7 +20,7 @@ public struct Status
         PieceName = pieceName;
     }
 }
-public abstract class PieceBase : MonoBehaviour,IMeshObject
+public abstract class PieceBase : GameObjectBase
 {
     public Status Status { get; set; }
     public Pieceside Side;
@@ -36,19 +36,4 @@ public abstract class PieceBase : MonoBehaviour,IMeshObject
     /// </summary>
     /// <returns>自分が行けるマスのリスト</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
-
-
-
-    /// <summary>
-    /// コマの見た目に関する設定を行っているオブジェクトを取得する抽象関数
-    /// </summary>
-    /// <returns></returns>
-    public abstract GameObject GetMeshGameObject();
-
-    /// <summary>
-    /// コマオブジェクトを取得する抽象関数
-    /// </summary>
-    /// <returns></returns>
-    public abstract GameObject GetGameObject();
-
 }
