@@ -5,6 +5,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public Player User;
+    public CPU Cpu;
     public BoardManager board;
     private bool isPlayerTurn = true;
 
@@ -51,6 +52,21 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        User.Play();
+        if (isPlayerTurn == true)
+        {
+            var played = User.Play();
+            if (played)
+            {
+                isPlayerTurn = false;
+            }
+        }
+        else
+        {
+            var played = Cpu.Play();
+            if (played)
+            {
+                isPlayerTurn = true;
+            }
+        }
     }
 }
