@@ -29,6 +29,10 @@ public abstract class PieceBase : GameObjectBase
     /// </summary>
     public CubeBase OnCube { get; set; }
 
+    /// <summary>
+    /// コマをcubeの上に移動する
+    /// </summary>
+    /// <param name="cube">移動先のマス</param>
     public void MoveTo(CubeBase cube)
     {
         OnCube.Piece = null;
@@ -39,9 +43,7 @@ public abstract class PieceBase : GameObjectBase
 
     /// <summary>
     /// 自分が行けるマスのリストを返す抽象関数
-    /// 引数 : なし
-    /// 返り値 : マスのリスト
     /// </summary>
-    /// <returns>自分が行けるマスのリスト</returns>
+    /// <returns>自分が行けるマスの集合</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
 }
