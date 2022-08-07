@@ -10,11 +10,11 @@ public enum Pieceside
 
 public struct Status
 {
-	public int Hp { get; set; }
+    public int Hp { get; set; }
     public int Attack { get; set; }
     public string PieceName { get; set; }
-    public Status(int hp,int attack, string pieceName)
-    { 
+    public Status(int hp, int attack, string pieceName)
+    {
         Hp = hp;
         Attack = attack;
         PieceName = pieceName;
@@ -30,10 +30,20 @@ public abstract class PieceBase : GameObjectBase
     public CubeBase OnCube { get; set; }
 
     /// <summary>
-    /// 自分が行けるマスのリストを返す抽象関数
-    /// 引数 : なし
-    /// 返り値 : マスのリスト
+    /// コマをcubeの上に移動する
     /// </summary>
-    /// <returns>自分が行けるマスのリスト</returns>
+    /// <param name="cube">移動先のマス</param>
+    public void MoveTo(CubeBase cube)
+    {
+        OnCube.Piece = null;
+        cube.Piece = this;
+        OnCube = cube;
+        transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
+    }
+
+    /// <summary>
+    /// 自分が行けるマスのリストを返す抽象関数
+    /// </summary>
+    /// <returns>自分が行けるマスの集合</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
 }
