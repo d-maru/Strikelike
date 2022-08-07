@@ -46,9 +46,12 @@ public class CPU : MonoBehaviour, IPlayer
 
         int pieceNumber = Random.Range(0, opponentPieces.Count);
         var opponentPiece = opponentPieces[pieceNumber];
-        var cubes = opponentPiece.getCanMoveCubeSet().ToList();
-        var cube = cubes[Random.Range(0, cubes.Count)];
-        opponentPiece.transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
+        var cubes = opponentPiece.getCanMoveCubeSet();
+        var candidates = from c in cubes
+                         where c != opponentPiece.OnCube
+                         select c;
+        var destination = candidates.ElementAt(Random.Range(0, candidates.Count()));
+        opponentPiece.MoveTo(destination);
         return true;
     }
 }

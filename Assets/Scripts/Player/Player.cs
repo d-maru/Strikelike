@@ -10,13 +10,13 @@ public class Player : MonoBehaviour, IPlayer
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public bool Play()
@@ -42,10 +42,7 @@ public class Player : MonoBehaviour, IPlayer
                     CubeBase cube = hitCollider.gameObject.GetComponent<CubeBase>();
                     if (piece.getCanMoveCubeSet().Contains(cube))
                     {
-                        piece.transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
-                        piece.OnCube.Piece = null;
-                        piece.OnCube = cube;
-                        cube.Piece = piece;
+                        piece.MoveTo(cube);
                         return true;
                     }
                 }
