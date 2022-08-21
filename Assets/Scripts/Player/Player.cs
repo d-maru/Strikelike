@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IPlayer
 {
     public PieceBase piece;
     public bool pieceSlected = false;
-
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IPlayer
         
     }
 
-    public void Play()
+    public bool Play()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -34,8 +34,17 @@ public class Player : MonoBehaviour, IPlayer
                     piece = hitCollider.gameObject.GetComponent<PieceBase>();
                     //プレイヤーが動かすコマを選んだらSE再生
                     SoundManager.Instance.PlayPieceSelectSE();
-                    var button = GameObject.Find("Choice");
-                    //var choiseButton = button
+                    /*
+                    var choice = choiceUI.SelectButton();
+                    if (choice)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                    */
                 }
                 else if (hitCollider.CompareTag("Cube") && pieceSlected)
                 {
@@ -43,13 +52,12 @@ public class Player : MonoBehaviour, IPlayer
                     CubeBase cube = hitCollider.gameObject.GetComponent<CubeBase>();
                     if (piece.getCanMoveCubeSet().Contains(cube))
                     {
-                        piece.transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
-                        piece.OnCube.Piece = null;
-                        piece.OnCube = cube;
-                        cube.Piece = piece;
+                        piece.MoveTo(cube);
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 }

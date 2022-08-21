@@ -1,5 +1,5 @@
 ﻿public interface IPlayer
 {
-    void Play();
+    bool Play();
 }
 
