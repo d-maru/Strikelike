@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 354363877}
   m_Layer: 5
   m_Name: MoveButton
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -745,7 +745,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 354363878}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1518819637}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnClickMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &354363878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,8 +1319,7 @@ MonoBehaviour:
   pieceCamera: {fileID: 963194227}
   moveButtonUI: {fileID: 549990180}
   attackButtonUI: {fileID: 354363876}
-  UIPiece: {fileID: 1480319613}
-  worldOffset: {x: 5.2, y: 0, z: 7}
+  worldOffset: {x: 4.9, y: 0, z: 5.1}
   buttonOffset: {x: 0, y: 25}
 --- !u!1 &507717223
 GameObject:
@@ -1459,7 +1470,7 @@ GameObject:
   - component: {fileID: 549990181}
   m_Layer: 5
   m_Name: AttackButton
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1528,7 +1539,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 549990182}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1518819637}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnClickAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &549990182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2993,12 +3016,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1480319613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3148290061575688748, guid: 86fc08d3fe19da74cba95e701fab112c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1535541507}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1518819635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,7 +3061,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piece: {fileID: 0}
-  pieceSlected: 0
+  pieceSelected: 0
+  moveSelected: 0
+  choice: {fileID: 503453557}
 --- !u!1001 &1535541507
 PrefabInstance:
   m_ObjectHideFlags: 0

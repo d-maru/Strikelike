@@ -10,7 +10,6 @@ public class ButtonUI : MonoBehaviour
     [SerializeField] Camera pieceCamera;
     [SerializeField] RectTransform moveButtonUI;
     [SerializeField] RectTransform attackButtonUI;
-    [SerializeField] GameObject UIPiece;
     [SerializeField] Vector3 worldOffset;
     [SerializeField] Vector2 buttonOffset;
     // Start is called before the first frame update
@@ -22,27 +21,17 @@ public class ButtonUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var button = GameObject.Find("MoveButton");
-        var choiceUI = button.GetComponent<ButtonUI>();
-        buttonPiece = UIPiece.GetComponent<Transform>();
+
+    }
+
+    public void SelectButton(PieceBase piece)
+    {
+        buttonPiece = piece.GetComponent<Transform>();
         var pieceWorldPosition = buttonPiece.position + worldOffset;
         var pieceScreenPosition = pieceCamera.WorldToScreenPoint(pieceWorldPosition);
         RectTransformUtility.ScreenPointToLocalPointInRectangle
             (parentUI, pieceScreenPosition, null, out var uiLocalPosition);
         moveButtonUI.position = uiLocalPosition;
         attackButtonUI.position = uiLocalPosition + buttonOffset;
-    }
-
-    public bool SelectButton()
-    {
-
-
-        /*
-        GameObject moveButton = GameObject.Find("Move");
-        GameObject attackButton = GameObject.Find("Attack");
-        
-        return false;
-        */
-        return true;
     }
 }

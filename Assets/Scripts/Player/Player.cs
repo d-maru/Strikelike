@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 
 public class Player : MonoBehaviour, IPlayer
 {
     public PieceBase piece;
-    public bool pieceSlected = false;
+    public bool pieceSelected = false;
+    public bool moveSelected = false;
+    public GameObject choice;
     // Start is called before the first frame update
     void Start()
     {
-
+        choice.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,25 +32,17 @@ public class Player : MonoBehaviour, IPlayer
                 Collider hitCollider = hit.collider;
                 if (hitCollider.CompareTag("Piece"))
                 {
-                    pieceSlected = true;
+                    pieceSelected = true;
                     piece = hitCollider.gameObject.GetComponent<PieceBase>();
                     //プレイヤーが動かすコマを選んだらSE再生
                     SoundManager.Instance.PlayPieceSelectSE();
-                    /*
-                    var choice = choiceUI.SelectButton();
-                    if (choice)
-                    {
-
-                    }
-                    else
-                    {
-
-                    }
-                    */
+                    choice.SetActive(true);
+                    var selectButton = choice.GetComponent<ButtonUI>();
+                    selectButton.SelectButton(piece);
                 }
-                else if (hitCollider.CompareTag("Cube") && pieceSlected)
+                else if (hitCollider.CompareTag("Cube") && pieceSelected && moveSelected)
                 {
-                    pieceSlected = false;
+                    pieceSelected = false;
                     CubeBase cube = hitCollider.gameObject.GetComponent<CubeBase>();
                     if (piece.getCanMoveCubeSet().Contains(cube))
                     {
@@ -59,5 +53,17 @@ public class Player : MonoBehaviour, IPlayer
             }
         }
         return false;
+    }
+
+    public void OnClickAttack()
+    {
+        moveSelected = false;
+        choice.SetActive(false);
+    }
+
+    public void OnClickMove()
+    {
+        moveSelected = true;
+        choice.SetActive(false);
     }
 }
