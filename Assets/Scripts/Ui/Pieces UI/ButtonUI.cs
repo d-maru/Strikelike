@@ -26,12 +26,14 @@ public class ButtonUI : MonoBehaviour
 
     public void SelectButton(PieceBase piece)
     {
-        buttonPiece = piece.GetComponent<Transform>();
-        var pieceWorldPosition = buttonPiece.position + worldOffset;
+        var statusUi = piece.StatusCanvas.GetComponent<StatusUI>();
+        var placeHolder = statusUi.ButtonPlaceHolder;
+        buttonPiece = placeHolder.GetComponent<Transform>();
+        var pieceWorldPosition = buttonPiece.position;
         var pieceScreenPosition = pieceCamera.WorldToScreenPoint(pieceWorldPosition);
         RectTransformUtility.ScreenPointToLocalPointInRectangle
             (parentUI, pieceScreenPosition, null, out var uiLocalPosition);
-        moveButtonUI.position = uiLocalPosition;
-        attackButtonUI.position = uiLocalPosition + buttonOffset;
+        moveButtonUI.position = buttonPiece.position;
+        attackButtonUI.position = buttonPiece.position;
     }
 }

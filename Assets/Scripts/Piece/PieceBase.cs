@@ -28,6 +28,8 @@ public abstract class PieceBase : GameObjectBase
     /// 現在地(どのcubeの上にいるか)
     /// </summary>
     public CubeBase OnCube { get; set; }
+    [field: SerializeField] 
+    public GameObject StatusCanvas { get; set; }
 
     public void MoveTo(CubeBase cube)
     {

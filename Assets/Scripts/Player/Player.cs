@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour, IPlayer
 {
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour, IPlayer
 
     public bool Play()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return false;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
