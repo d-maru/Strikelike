@@ -47,6 +47,7 @@ public class Player : MonoBehaviour, IPlayer
                     if (piece.getCanMoveCubeSet().Contains(cube))
                     {
                         piece.MoveTo(cube);
+                        moveSelected = false;
                         return true;
                     }
                 }
