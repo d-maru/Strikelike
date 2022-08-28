@@ -10,8 +10,8 @@ public class ButtonUI : MonoBehaviour
     [SerializeField] Camera pieceCamera;
     [SerializeField] RectTransform moveButtonUI;
     [SerializeField] RectTransform attackButtonUI;
-    [SerializeField] Vector3 worldOffset;
-    [SerializeField] Vector2 buttonOffset;
+    [SerializeField] Transform CommandUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +26,15 @@ public class ButtonUI : MonoBehaviour
 
     public void SelectButton(PieceBase piece)
     {
+        // 選択したコマの仮のボタンUIレイアウトを取得し、その場所にボタンUIを表示させるようにする
         var statusUi = piece.StatusCanvas.GetComponent<StatusUI>();
         var placeHolder = statusUi.ButtonPlaceHolder;
         buttonPiece = placeHolder.GetComponent<Transform>();
-        var pieceWorldPosition = buttonPiece.position;
-        var pieceScreenPosition = pieceCamera.WorldToScreenPoint(pieceWorldPosition);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle
-            (parentUI, pieceScreenPosition, null, out var uiLocalPosition);
-        moveButtonUI.position = buttonPiece.position;
-        attackButtonUI.position = buttonPiece.position;
+
+        // 仮ボタンUIレイアウトの座標をスクリーン座標型に変換
+        var position = RectTransformUtility.WorldToScreenPoint(Camera.main, buttonPiece.transform.position);
+
+        // ボタンUIの親オブジェクトの場所を更新する
+        CommandUI.transform.position = position;
     }
 }
