@@ -14,7 +14,9 @@ public struct Status
     public int Attack { get; set; }
     public string PieceName { get; set; }
     public Status(int hp, int attack, string pieceName)
+
     {
+
         Hp = hp;
         Attack = attack;
         PieceName = pieceName;
@@ -28,7 +30,16 @@ public abstract class PieceBase : GameObjectBase
     /// 現在地(どのcubeの上にいるか)
     /// </summary>
     public CubeBase OnCube { get; set; }
+    [field: SerializeField] 
+    public GameObject StatusCanvas { get; set; }
 
+    public void MoveTo(CubeBase cube)
+    {
+        OnCube.Piece = null;
+        cube.Piece = this;
+        OnCube = cube;
+        transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
+    }
     /// <summary>
     /// コマをcubeの上に移動する
     /// </summary>

@@ -8,7 +8,9 @@ public class CPU : MonoBehaviour, IPlayer
     public GameObject[] pieces;
     public GameObject picPiece;
     private Pieceside pieceside;
+
     // Start is called before the first frame update
+
     void Start()
     {
 
@@ -21,7 +23,7 @@ public class CPU : MonoBehaviour, IPlayer
     }
 
     /// <summary>
-    /// ƒRƒ}‚ÌŒ©‚½–Ú‚ÉŠÖ‚·‚éİ’è‚ğs‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
+    /// ã‚³ãƒã®è¦‹ãŸç›®ã«é–¢ã™ã‚‹è¨­å®šã‚’è¡Œã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
     /// </summary>
     /// <returns></returns>
     public GameObject GetMeshObject()
@@ -32,7 +34,7 @@ public class CPU : MonoBehaviour, IPlayer
     public bool Play()
     {
         pieces = GameObject.FindGameObjectsWithTag("Piece");
-        Debug.Log(pieceside);
+
         var opponentPieces = new List<PieceBase>();
         foreach (var sidePiece in pieces)
         {

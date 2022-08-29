@@ -96,8 +96,9 @@ GameObject:
   - component: {fileID: 2860156158738642019}
   - component: {fileID: 832878932129271853}
   - component: {fileID: 832878932129271852}
+  - component: {fileID: 7663158259638672596}
   m_Layer: 5
-  m_Name: HpDisplayCanvas
+  m_Name: StatusCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,6 +117,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3886198131020962212}
+  - {fileID: 4277817669895627179}
   m_Father: {fileID: 3148290061575589452}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -197,6 +199,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e7c496d81277c4ea83e89d7571a34a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7663158259638672596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365124760701542135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3341584e1909c4b89a2fbbc20f04e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HpBar>k__BackingField: {fileID: 1593617361846391771}
+  <ButtonPlaceHolder>k__BackingField: {fileID: 2856512247445703480}
 --- !u!1 &1593617361846391771
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +380,42 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2856512247445703480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4277817669895627179}
+  m_Layer: 5
+  m_Name: ButtonPlaceHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4277817669895627179
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856512247445703480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3062552768611361454}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 52.9, y: -47}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3148290061575688704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Side: 0
+  <StatusCanvas>k__BackingField: {fileID: 1365124760701542135}
 --- !u!1 &3148290061575688750
 GameObject:
   m_ObjectHideFlags: 0
