@@ -19,7 +19,7 @@ public class DogKnight : PieceBase
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
@@ -29,9 +29,8 @@ public class DogKnight : PieceBase
     /// <param name="currentCube">現在対象として見てるキューブ</param>
     /// <param name="moveDistance">残りの移動距離</param>
     /// <returns>行けるマスのリストに今の対象を追加したもの</returns>
-    public HashSet<CubeBase> RecursiveGetCubes(HashSet<CubeBase> cubeSet, CubeBase currentCube,int moveDistance)
+    private HashSet<CubeBase> RecursiveGetCubes(HashSet<CubeBase> cubeSet, CubeBase currentCube, int moveDistance)
     {
-        // 現在の対象をリスト追加
         cubeSet.Add(currentCube);
 
         // 移動距離がまだ残っているのなら移動距離を1歩減らして再帰的に探索
@@ -48,10 +47,9 @@ public class DogKnight : PieceBase
     }
 
     /// <summary>
-    /// 自分が行けるマスのリストを返す関数の実現
-    /// リストを用意し、移動距離分 全方角 再帰的に探索する関数を呼び出す
+    /// 自分が行けるマスの集合を返す。
     /// </summary>
-    /// <returns>自分が行けるマスのリスト</returns>
+    /// <returns>自分が行けるマスの集合。現在立っている場所も含む。</returns>
     public override HashSet<CubeBase> getCanMoveCubeSet()
     {
         var cubeSet = new HashSet<CubeBase>();

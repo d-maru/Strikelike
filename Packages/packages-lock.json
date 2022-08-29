@@ -76,7 +76,9 @@
     },
     "com.unity.ide.rider": {
       "version": "3.0.15",
+
       "depth": 1,
+
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
@@ -85,7 +87,9 @@
     },
     "com.unity.ide.visualstudio": {
       "version": "2.0.16",
+
       "depth": 1,
+
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
@@ -227,10 +231,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.4",
+      "version": "2.1.9",
       "depth": 0,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.modules.vr": "1.0.0",
+        "com.unity.modules.xr": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {

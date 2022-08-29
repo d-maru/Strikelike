@@ -13,13 +13,15 @@ public class Player : MonoBehaviour, IPlayer
     // Start is called before the first frame update
     void Start()
     {
+
         choice.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public bool Play()
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour, IPlayer
                 {
                     pieceSelected = true;
                     piece = hitCollider.gameObject.GetComponent<PieceBase>();
-                    //プレイヤーが動かすコマを選んだらSE再生
+                    //繝励Ξ繧､繝､繝ｼ縺悟虚縺九☆繧ｳ繝槭ｒ驕ｸ繧薙□繧唄E蜀咲函
                     SoundManager.Instance.PlayPieceSelectSE();
                     choice.SetActive(true);
                     var selectButton = choice.GetComponent<ButtonUI>();
@@ -52,13 +54,16 @@ public class Player : MonoBehaviour, IPlayer
                     if (piece.getCanMoveCubeSet().Contains(cube))
                     {
                         piece.MoveTo(cube);
+
                         moveSelected = false;
+
                         return true;
                     }
                 }
             }
         }
         return false;
+
     }
 
     public void OnClickAttack()
@@ -71,5 +76,6 @@ public class Player : MonoBehaviour, IPlayer
     {
         moveSelected = true;
         choice.SetActive(false);
+
     }
 }
