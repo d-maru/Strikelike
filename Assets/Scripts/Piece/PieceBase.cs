@@ -33,13 +33,6 @@ public abstract class PieceBase : GameObjectBase
     [field: SerializeField] 
     public GameObject StatusCanvas { get; set; }
 
-    public void MoveTo(CubeBase cube)
-    {
-        OnCube.Piece = null;
-        cube.Piece = this;
-        OnCube = cube;
-        transform.position = new Vector3(cube.transform.position.x, 0, cube.transform.position.z);
-    }
     /// <summary>
     /// コマをcubeの上に移動する
     /// </summary>
