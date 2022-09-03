@@ -13,11 +13,10 @@ public class LookAtCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ワールド座標を基準に、回転を取得
-        Vector3 worldAngle = transform.eulerAngles;
-        worldAngle.x= Camera.main.transform.rotation.eulerAngles.x;
 
-        transform.eulerAngles = worldAngle;
+        //メインカメラの向きを常に向かせる
+        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.rotation.eulerAngles, new Vector3(1, 1, 1));
+        transform.eulerAngles = cameraForward;
 
 
     }

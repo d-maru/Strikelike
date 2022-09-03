@@ -51,7 +51,7 @@ public class FocusInfoPanelManager : MonoBehaviour
             }
 
         }
-        else if (currentFocusObject.CompareTag("Cube"))
+        else if (currentFocusObject.GetComponent<Cube>())
         {
             FocusInfoPanel.SetActive(false);
         }

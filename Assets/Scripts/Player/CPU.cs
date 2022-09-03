@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CPU : MonoBehaviour, IPlayer
 {
+    public GameObject[] pieces;
+    public GameObject picPiece;
+    private Pieceside pieceside;
+
     // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
-    /// ƒRƒ}‚ÌŒ©‚½–Ú‚ÉŠÖ‚·‚éİ’è‚ğs‚Á‚Ä‚¢‚éƒIƒuƒWƒFƒNƒg‚ğæ“¾
+    /// ã‚³ãƒã®è¦‹ãŸç›®ã«é–¢ã™ã‚‹è¨­å®šã‚’è¡Œã£ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
     /// </summary>
     /// <returns></returns>
     public GameObject GetMeshObject()
@@ -25,8 +31,29 @@ public class CPU : MonoBehaviour, IPlayer
         return transform.Find("polySurface1").gameObject;
     }
 
-    public void Play()
+    public bool Play()
     {
+        pieces = GameObject.FindGameObjectsWithTag("Piece");
 
+        var opponentPieces = new List<PieceBase>();
+        foreach (var sidePiece in pieces)
+        {
+            var pieceBase = sidePiece.GetComponent<PieceBase>();
+            pieceside = pieceBase.Side;
+            if (pieceside == Pieceside.Opponent)
+            {
+                opponentPieces.Add(pieceBase);
+            }
+        }
+
+        int pieceNumber = Random.Range(0, opponentPieces.Count);
+        var opponentPiece = opponentPieces[pieceNumber];
+        var cubes = opponentPiece.getCanMoveCubeSet();
+        var candidates = from c in cubes
+                         where c != opponentPiece.OnCube
+                         select c;
+        var destination = candidates.ElementAt(Random.Range(0, candidates.Count()));
+        opponentPiece.MoveTo(destination);
+        return true;
     }
 }
