@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IPlayer
     public bool pieceSelected = false;
     public bool moveSelected = false;
     public GameObject choice;
+    private Pieceside pieceside;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +42,15 @@ public class Player : MonoBehaviour, IPlayer
                 {
                     pieceSelected = true;
                     piece = hitCollider.gameObject.GetComponent<PieceBase>();
-                    //プレイヤーが動かすコマを選んだらSE再生
-                    SoundManager.Instance.PlayPieceSelectSE();
-                    choice.SetActive(true);
-                    var selectButton = choice.GetComponent<ButtonUI>();
-                    selectButton.SelectButton(piece);
+                    pieceside = piece.Side;
+                    if (pieceside == Pieceside.Player)
+                    {
+                        //プレイヤーが動かすコマを選んだらSE再生
+                        SoundManager.Instance.PlayPieceSelectSE();
+                        choice.SetActive(true);
+                        var selectButton = choice.GetComponent<ButtonUI>();
+                        selectButton.SelectButton(piece);
+                    }
                 }
                 else if (hitCollider.CompareTag("Cube") && pieceSelected && moveSelected)
                 {
@@ -76,6 +81,5 @@ public class Player : MonoBehaviour, IPlayer
     {
         moveSelected = true;
         choice.SetActive(false);
-
     }
 }
