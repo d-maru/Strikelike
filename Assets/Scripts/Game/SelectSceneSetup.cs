@@ -5,55 +5,55 @@ using UnityEngine;
 
 public class SelectSceneSetup : MonoBehaviour
 {
-    // ‰Šú”z’u‚ğƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Şê‡‚Ìƒtƒ@ƒCƒ‹–¼
+    // åˆæœŸé…ç½®ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€å ´åˆã®ãƒ•ã‚¡ã‚¤ãƒ«å
     public string defaultCubeMapFile = "defaultCubeMap.csv";
 
-    // ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ü‚È‚¢/“Ç‚İ‚ß‚È‚¢ê‡‚Ìƒ}ƒbƒvƒTƒCƒY
+    // ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã¾ãªã„/èª­ã¿è¾¼ã‚ãªã„å ´åˆã®ãƒãƒƒãƒ—ã‚µã‚¤ã‚º
     public int mapSize = 5;
 
-    // ƒLƒ…[ƒu1‚Â‚ ‚½‚è‚Ì‘å‚«‚³
+    // ã‚­ãƒ¥ãƒ¼ãƒ–1ã¤ã‚ãŸã‚Šã®å¤§ãã•
     public float cubeSize = 1.5f;
 
-    // ƒLƒ…[ƒu”z’u‚ÌŠî“_ˆÊ’u
+    // ã‚­ãƒ¥ãƒ¼ãƒ–é…ç½®ã®åŸºç‚¹ä½ç½®
     public Vector3 defaultPosition = new (-3.526728f, 7.115623f, 2.859495f);
 
-    // ƒLƒ…[ƒu‚Ìí—Ş”
+    // ã‚­ãƒ¥ãƒ¼ãƒ–ã®ç¨®é¡æ•°
     public int cubePrefabTypeCount = 2;
     public GameObject prefab_Cube;
     public GameObject prefab_WaterCube;
 
 
-    // e‚Æ‚È‚éƒ{[ƒhƒIƒuƒWƒFƒNƒg
+    // è¦ªã¨ãªã‚‹ãƒœãƒ¼ãƒ‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     public GameObject gameBoard;
 
     /// <summary>
-    /// ƒLƒ…[ƒu‚Ì”z’u‚ÌƒŠƒXƒg‚ğ¶¬‚·‚é
-    /// ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Åƒ}ƒbƒsƒ“ƒO‚ğ2ŸŒ³ƒŠƒXƒg‚Å•Ô‹p‚·‚é
+    /// ã‚­ãƒ¥ãƒ¼ãƒ–ã®é…ç½®ã®ãƒªã‚¹ãƒˆã‚’ç”Ÿæˆã™ã‚‹
+    /// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’2æ¬¡å…ƒãƒªã‚¹ãƒˆã§è¿”å´ã™ã‚‹
     /// </summary>
-    /// <returns>ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚¾ƒLƒ…[ƒu‚Ìƒ}ƒbƒsƒ“ƒO‚ğ‹LÚ‚µ‚½intŒ^2ŸŒ³ƒŠƒXƒg</returns>
+    /// <returns>ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã ã‚­ãƒ¥ãƒ¼ãƒ–ã®ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è¨˜è¼‰ã—ãŸintå‹2æ¬¡å…ƒãƒªã‚¹ãƒˆ</returns>
     public List<List<int>> MakeCubeList()
     {
-        // ‰Šú”z’u‚ÌƒLƒ…[ƒuƒŠƒXƒg
+        // åˆæœŸé…ç½®ã®ã‚­ãƒ¥ãƒ¼ãƒ–ãƒªã‚¹ãƒˆ
         List<List<int>> cubeLists = new();
 
         try
         {
-            // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+            // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
             if (File.Exists(Application.dataPath + "/" + defaultCubeMapFile))
             {
                 using StreamReader sr = new(Application.dataPath + "/" + defaultCubeMapFile, System.Text.Encoding.UTF8);
 
-                // ––”ö‚Ü‚ÅŒJ‚è•Ô‚·
+                // æœ«å°¾ã¾ã§ç¹°ã‚Šè¿”ã™
                 while (!sr.EndOfStream)
                 {
-                    // 1s‚¸‚Â“Ç‚İ‚ñ‚ÅƒJƒ“ƒ}‹æØ‚è‚ÅƒŠƒXƒg‚ÉŠi”[‚·‚é
+                    // 1è¡Œãšã¤èª­ã¿è¾¼ã‚“ã§ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šã§ãƒªã‚¹ãƒˆã«æ ¼ç´ã™ã‚‹
                     List<string> stringList = new(sr.ReadLine().Split(','));
                     cubeLists.Add(stringList.ConvertAll(x => int.Parse(x)));
                 }
             }
             else
             {
-                // ƒtƒ@ƒCƒ‹‚ª–³‚¯‚ê‚Î‘S•”-1
+                // ãƒ•ã‚¡ã‚¤ãƒ«ãŒç„¡ã‘ã‚Œã°å…¨éƒ¨-1
                 List<int> cubeListOneRow = new(System.Linq.Enumerable.Repeat<int>(-1, mapSize));
                 for (int index = 0; index < mapSize; index++)
                 {
@@ -63,10 +63,10 @@ public class SelectSceneSetup : MonoBehaviour
         }
         catch
         {
-            // ƒŠƒXƒg‚ğˆê‰ñ‹ó‚É
+            // ãƒªã‚¹ãƒˆã‚’ä¸€å›ç©ºã«
             cubeLists.Clear();
 
-            // ƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚âŒ^•ÏŠ·‚É¸”s‚µ‚½‚ç‘S•”-1
+            // ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã‚„å‹å¤‰æ›ã«å¤±æ•—ã—ãŸã‚‰å…¨éƒ¨-1
             List<int> cubeListOneRow = new(System.Linq.Enumerable.Repeat<int>(-1, mapSize));
             for (int index = 0; index < mapSize; index++)
             {
@@ -78,30 +78,30 @@ public class SelectSceneSetup : MonoBehaviour
 
     private void Awake()
     {
-        // ƒ{[ƒh‚Ì‰º‚ğ‚¨‘|œ
+        // ãƒœãƒ¼ãƒ‰ã®ä¸‹ã‚’ãŠæƒé™¤
         foreach (Transform n in gameBoard.transform)
         {
             GameObject.Destroy(n.gameObject);
         }
 
-        // ƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚ñ‚ÅƒŠƒXƒgì¬
+        // ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚“ã§ãƒªã‚¹ãƒˆä½œæˆ
         List<List<int>> cubeLists = MakeCubeList();
 
-        // ƒLƒ…[ƒu˜AŒ‹—p‚ÌƒLƒ…[ƒuƒŠƒXƒg
+        // ã‚­ãƒ¥ãƒ¼ãƒ–é€£çµç”¨ã®ã‚­ãƒ¥ãƒ¼ãƒ–ãƒªã‚¹ãƒˆ
         List<CubeBase> CubeBaseList = new();
 
-        // Šes‚Éƒ‹[ƒv
+        // å„è¡Œã«ãƒ«ãƒ¼ãƒ—
         int rowIndex = 0;
         foreach (List<int> cubeList in cubeLists)
         {
-            // Ši—ñ‚Éƒ‹[ƒv
+            // æ ¼åˆ—ã«ãƒ«ãƒ¼ãƒ—
             int colIndex = 0;
             foreach (int cubeType in cubeList)
             {
-                // ”z’u‚·‚éƒLƒ…[ƒu
+                // é…ç½®ã™ã‚‹ã‚­ãƒ¥ãƒ¼ãƒ–
                 GameObject cube=null;
 
-                // ’l‚ª³‚µ‚­‚È‚¯‚ê‚Îƒ‰ƒ“ƒ_ƒ€
+                // å€¤ãŒæ­£ã—ããªã‘ã‚Œã°ãƒ©ãƒ³ãƒ€ãƒ 
                 int cubeTypeValid = cubeType;
                 if (cubeType < 0 || cubeType > cubePrefabTypeCount)
                 {
@@ -109,28 +109,28 @@ public class SelectSceneSetup : MonoBehaviour
                 }
                 switch (cubeTypeValid)
                 {
-                    // 1‚Ì‚ÍCube
+                    // 1ã®æ™‚ã¯Cube
                     case 1:
                         cube = Instantiate(prefab_Cube, new Vector3(defaultPosition.x + rowIndex * cubeSize, defaultPosition.y-8, defaultPosition.z + colIndex * cubeSize), Quaternion.identity, gameBoard.transform);
                         break;
-                    // 2‚Ì‚ÍWaterCube
+                    // 2ã®æ™‚ã¯WaterCube
                     case 2:
                         cube = Instantiate(prefab_WaterCube, new Vector3(defaultPosition.x + rowIndex * cubeSize, defaultPosition.y-8, defaultPosition.z + colIndex * cubeSize), Quaternion.identity , gameBoard.transform);
                         break;
-                    // 0‚Ì‚Í‹ó
+                    // 0ã®æ™‚ã¯ç©º
                     case 0:
                         break;
                 }
 
-                // –¼‘O‚ğİ’è
+                // åå‰ã‚’è¨­å®š
                 if(cube is not null)
                     cube.name = "Cube_" + rowIndex + "_" + colIndex;
 
-                // —×ÚƒLƒ…[ƒuİ’è
+                // éš£æ¥ã‚­ãƒ¥ãƒ¼ãƒ–è¨­å®š
                 CubeBase cubeBase = cube?.GetComponent<CubeBase>();
                 if(cubeBase is not null){
 
-                    // —×ÚƒLƒ…[ƒu‚Ì‰Šú’l‚Æ‚µ‚Änull‚ğİ’è
+                    // éš£æ¥ã‚­ãƒ¥ãƒ¼ãƒ–ã®åˆæœŸå€¤ã¨ã—ã¦nullã‚’è¨­å®š
                     cubeBase.AdjacentCubes = new() { { Direction.North, null }, { Direction.East, null }, { Direction.West, null }, { Direction.South, null } };
                     
                     if (rowIndex > 0)
