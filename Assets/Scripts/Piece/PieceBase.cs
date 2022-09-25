@@ -16,7 +16,6 @@ public struct Status
     public Status(int hp, int attack, string pieceName)
 
     {
-
         Hp = hp;
         Attack = attack;
         PieceName = pieceName;
@@ -26,6 +25,7 @@ public abstract class PieceBase : GameObjectBase
 {
     public Status Status { get; set; }
     public Pieceside Side;
+    public int currentHp;
     /// <summary>
     /// 現在地(どのcubeの上にいるか)
     /// </summary>
@@ -50,4 +50,17 @@ public abstract class PieceBase : GameObjectBase
     /// </summary>
     /// <returns>自分が行けるマスの集合</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
+
+    public void AttackTo(PieceBase opponentPiece)
+    {
+        int opponentHp = opponentPiece.currentHp;
+        int attack = Status.Attack;
+        Debug.Log(currentHp);
+        opponentHp -= attack;
+        Debug.Log(opponentHp);
+        opponentPiece.currentHp = opponentHp;
+        Debug.Log(opponentPiece.currentHp);
+    }
+
+    public abstract HashSet<CubeBase> getCanAttackCubeSet();
 }
