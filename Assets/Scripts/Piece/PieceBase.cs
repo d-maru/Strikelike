@@ -64,6 +64,5 @@ public abstract class PieceBase : GameObjectBase
             Debug.Log(targetPiece.currentHp);
         }
     }
-
     public abstract HashSet<CubeBase> getCanAttackCubeSet();
 }
