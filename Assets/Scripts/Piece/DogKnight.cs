@@ -10,7 +10,7 @@ public class DogKnight : PieceBase
     public static int DefaultMoveDistance { get; } = 1;
 
     // 攻撃可能範囲
-    public static int DefaultAttackRange { get; } = 1;
+    public static int DefaultAttackRange { get; } = 2;
 
     protected override void Awake()
     {
@@ -83,7 +83,6 @@ public class DogKnight : PieceBase
     public override HashSet<CubeBase> getCanAttackCubeSet()
     {
         var cubeSet = new HashSet<CubeBase>();
-
         return RecursiveGetAttackRangeCubes(cubeSet, OnCube, DefaultAttackRange);
     }
 }

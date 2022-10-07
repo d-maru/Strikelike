@@ -70,22 +70,18 @@ public class Player : MonoBehaviour, IPlayer
                 else if (hitCollider.CompareTag("Piece") && pieceSelected && attackSelected)
                 {
                     pieceSelected = false;
-                    var opponentPiece = hitCollider.gameObject.GetComponent<PieceBase>();
-                    opponentPieceside = opponentPiece.Side;
-                    if (opponentPieceside == Pieceside.Opponent)
+                    var targetPiece = hitCollider.gameObject.GetComponent<PieceBase>();
+                    var attackRangeCube = piece.getCanAttackCubeSet();
+                    var opponentCube = targetPiece.OnCube;
+                    if (attackRangeCube.Contains(opponentCube))
                     {
-                        CubeBase attackcube = piece.OnCube.GetComponent<CubeBase>();
-                        var attackRangeCube = piece.getCanAttackCubeSet().Contains(attackcube);
-                        var opponentCube = opponentPiece.OnCube;;
-                        if (opponentCube == attackRangeCube)
-                        {
-                            piece.AttackTo(opponentPiece);
+                        piece.AttackTo(targetPiece);
                             
-                            attackSelected = false;
+                        attackSelected = false;
 
-                            return true;
-                        }
+                        return true;
                     }
+                    
                 }
             }
         }

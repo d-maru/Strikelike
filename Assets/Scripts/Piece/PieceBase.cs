@@ -51,15 +51,18 @@ public abstract class PieceBase : GameObjectBase
     /// <returns>自分が行けるマスの集合</returns>
     public abstract HashSet<CubeBase> getCanMoveCubeSet();
 
-    public void AttackTo(PieceBase opponentPiece)
+    public void AttackTo(PieceBase targetPiece)
     {
-        int opponentHp = opponentPiece.currentHp;
-        int attack = Status.Attack;
-        Debug.Log(currentHp);
-        opponentHp -= attack;
-        Debug.Log(opponentHp);
-        opponentPiece.currentHp = opponentHp;
-        Debug.Log(opponentPiece.currentHp);
+        var targetPieceSide = targetPiece.Side;
+        if (targetPieceSide == Pieceside.Opponent)
+        {
+            int opponentHp = targetPiece.currentHp;
+            int attack = Status.Attack;
+            Debug.Log(currentHp);
+            opponentHp -= attack;
+            targetPiece.currentHp = opponentHp;
+            Debug.Log(targetPiece.currentHp);
+        }
     }
 
     public abstract HashSet<CubeBase> getCanAttackCubeSet();
