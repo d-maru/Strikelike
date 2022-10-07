@@ -47,4 +47,12 @@ public abstract class CubeBase : GameObjectBase
                 return true;
         return false;
     }
+
+    public bool CanAttack(Direction attackDirection)
+    {
+        if (AdjacentCubes[attackDirection] is not null)
+            if (AdjacentCubes[attackDirection].Piece is null)
+                return true;
+        return false;
+    }
 }

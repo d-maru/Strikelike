@@ -5,7 +5,6 @@ using UnityEngine;
 public class FocusInfo : MonoBehaviour
 {
     MeshObjectManager currentFocusMeshObjectManager;
-   
 
     // StopWatchを定義
     System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
@@ -81,7 +80,7 @@ public class FocusInfo : MonoBehaviour
         else if (currentFocusMeshObjectManager != null)
         {
             ChangeBrightNess(currentFocusMeshObjectManager,sw);
-
+            
             // コマをフォーカスしているなら移動可能範囲を明度アニメさせる
             ChangeBrightNessEnableMoveAreas(currentFocusMeshObjectManager);
         }
@@ -137,6 +136,11 @@ public class FocusInfo : MonoBehaviour
         {
             ChangeBrightNess(enableMoveArea.GetMeshGameManager(), sw);
         }
+        HashSet<CubeBase> enableAttackAreas = currentFocusMeshObjectManager.GetGameObject().GetComponent<PieceBase>().getCanAttackCubeSet();
+        foreach(CubeBase enableAttackArea in enableAttackAreas)
+        {
+            ChangeBrightNess(enableAttackArea.GetMeshGameManager(), sw);
+        }
     }
 
     /// <summary>
@@ -151,9 +155,14 @@ public class FocusInfo : MonoBehaviour
         }
 
         HashSet<CubeBase> enableMoveAreas = currentFocusMeshObjectManager.GetGameObject().GetComponent<PieceBase>().getCanMoveCubeSet();
+        HashSet<CubeBase> enableAttackAreas = currentFocusMeshObjectManager.GetGameObject().GetComponent<PieceBase>().getCanAttackCubeSet();
         foreach (CubeBase enableMoveArea in enableMoveAreas)
         {
             enableMoveArea.GetMeshGameManager().ResetOriginColor();
+        }
+        foreach (CubeBase enableAttackArea in enableAttackAreas)
+        {
+            enableAttackArea.GetMeshGameManager().ResetOriginColor();
         }
     }
 

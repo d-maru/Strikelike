@@ -9,11 +9,20 @@ public class DogKnight : PieceBase
     /// </summary>
     public static int DefaultMoveDistance { get; } = 1;
 
+    // 攻撃可能範囲
+    public static int DefaultAttackRange { get; } = 2;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Status = new(10,  3, "たぬきさん");
+        currentHp = Status.Hp;
+    }
     // Start is called before the first frame update
     void Start()
     {
         // 見た目に関するオブジェクトが何であるかは一番はじめに設定しておく必要がある
-        GetMeshGameManager().SetMeshGameObject(transform.Find("polySurface1").gameObject);
+        GetMeshGameManager().SetMeshGameObject(transform.Find("polySurface1").gameObject);;
     }
 
     // Update is called once per frame
@@ -57,5 +66,25 @@ public class DogKnight : PieceBase
         var cubeSet = new HashSet<CubeBase>();
 
         return RecursiveGetCubes(cubeSet, OnCube, DefaultMoveDistance);
+    }
+
+    private HashSet<CubeBase> RecursiveGetAttackRangeCubes(HashSet<CubeBase> attackCubeSet, CubeBase currentAttackCube, int attackRange)
+    {
+        attackCubeSet.Add(currentAttackCube);
+        if (--attackRange >= 0)
+        {
+            foreach(Direction attackDirection in Direction.GetValues(typeof(Direction)))
+                if (currentAttackCube.CanAttack(attackDirection))
+                {
+                    attackCubeSet = RecursiveGetAttackRangeCubes(attackCubeSet, currentAttackCube.AdjacentCubes[attackDirection], attackRange);
+                }
+        }
+        return attackCubeSet;
+    }
+
+    public override HashSet<CubeBase> getCanAttackCubeSet()
+    {
+        var cubeSet = new HashSet<CubeBase>();
+        return RecursiveGetAttackRangeCubes(cubeSet, OnCube, DefaultAttackRange);
     }
 }

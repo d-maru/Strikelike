@@ -9,8 +9,10 @@ public class Player : MonoBehaviour, IPlayer
     public PieceBase piece;
     public bool pieceSelected = false;
     public bool moveSelected = false;
+    public bool attackSelected = false;
     public GameObject choice;
     private Pieceside pieceside;
+    private Pieceside opponentPieceside;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour, IPlayer
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 Collider hitCollider = hit.collider;
-                if (hitCollider.CompareTag("Piece"))
+                if (hitCollider.CompareTag("Piece") && pieceSelected == false)
                 {
                     pieceSelected = true;
                     piece = hitCollider.gameObject.GetComponent<PieceBase>();
@@ -65,6 +67,22 @@ public class Player : MonoBehaviour, IPlayer
                         return true;
                     }
                 }
+                else if (hitCollider.CompareTag("Piece") && pieceSelected && attackSelected)
+                {
+                    pieceSelected = false;
+                    var targetPiece = hitCollider.gameObject.GetComponent<PieceBase>();
+                    var attackRangeCube = piece.getCanAttackCubeSet();
+                    var opponentCube = targetPiece.OnCube;
+                    if (attackRangeCube.Contains(opponentCube))
+                    {
+                        piece.AttackTo(targetPiece);
+                            
+                        attackSelected = false;
+
+                        return true;
+                    }
+                    
+                }
             }
         }
         return false;
@@ -74,12 +92,14 @@ public class Player : MonoBehaviour, IPlayer
     public void OnClickAttack()
     {
         moveSelected = false;
+        attackSelected = true;
         choice.SetActive(false);
     }
 
     public void OnClickMove()
     {
         moveSelected = true;
+        attackSelected = false;
         choice.SetActive(false);
     }
 }

@@ -21,7 +21,7 @@ public class GameObjectBase : MonoBehaviour
 {
     MeshObjectManager MeshObjectManager;
 
-    void Awake()
+    protected virtual void Awake()
     {
         this.MeshObjectManager = new MeshObjectManager(transform.gameObject);
 
