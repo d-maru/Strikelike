@@ -3493,6 +3493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979878052}
   - component: {fileID: 1979878051}
+  - component: {fileID: 1979878053}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -3532,6 +3533,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1979878053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979878050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29072565942bad348b3f99e34fb060f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCubeMapFile: defaultCubeMap.csv
+  mapSize: 5
+  cubeSize: 1.5
+  defaultPosition: {x: -3.526728, y: 7.115623, z: 2.859495}
+  cubePrefabTypeCount: 2
+  prefab_Cube: {fileID: 1832114801085899884, guid: e76221d4824bf4e49bd8118ae6177af5,
+    type: 3}
+  prefab_WaterCube: {fileID: 6385582562810231100, guid: f220700d0965f8b4eadd2a881579be5a,
+    type: 3}
+  gameBoard: {fileID: 1299963763}
 --- !u!1001 &2001515076
 PrefabInstance:
   m_ObjectHideFlags: 0
